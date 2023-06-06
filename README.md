@@ -2,25 +2,25 @@
 
 This is an API app for receiving and storing accommodation bookings and guest information from multiple APIs.
 
-* Ruby version
+## Ruby version
 3.2.0
 
-* System dependencies
+## System dependencies
 Ruby and Bundler must be installed. Other dependencies will be handled by bundler during setup.
 
-* Configuration
+## Configuration
 There is nothing to configure at this stage (no environment variables or credentials).
 
-* Database creation
+## Database creation
 SQLite is currently used, so there is no need to manually create a database.
 
-* Database initialization
+## Database initialization
 Run rails db:migrate to set up the database
 
-* How to run the test suite
+## How to run the test suite
 Run rspec spec/
 
-* Internal Description
+## Internal Description
 
 API controllers have the responsibility to:
 - check the incoming payload structures for validity
