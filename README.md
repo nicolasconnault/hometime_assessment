@@ -10,6 +10,8 @@ Ruby and Bundler must be installed. Other dependencies will be handled by bundle
 
 ## Configuration
 There is nothing to configure at this stage (no environment variables or credentials).
+Run `rails s` to launch the local server.
+You can then test the endpoints using curl or Postman.
 
 ## Database creation
 SQLite is currently used, so there is no need to manually create a database.
