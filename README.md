@@ -17,10 +17,10 @@ You can then test the endpoints using curl or Postman.
 SQLite is currently used, so there is no need to manually create a database.
 
 ## Database initialization
-Run rails db:migrate to set up the database
+Run `rails db:migrate` to set up the database
 
 ## How to run the test suite
-Run rspec spec/
+Run `rspec spec/`
 
 ## Internal Description
 
