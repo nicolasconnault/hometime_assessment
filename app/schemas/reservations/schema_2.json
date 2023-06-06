@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "reservation": {
+      "type": "object",
+      "properties": {
+        "code": {"type": "string"},
+        "start_date": {"type": "string"},
+        "end_date": {"type": "string"},
+        "expected_payout_amount": {"type": "string"},
+        "guest_details": {"type": "object"},
+        "guest_email": {"type": "string"},
+        "guest_first_name": {"type": "string"},
+        "guest_last_name": {"type": "string"},
+        "guest_phone_numbers": {"type": "array"},
+        "listing_security_price_accurate": {"type": "string"},
+        "host_currency": {"type": "string"},
+        "nights": {"type": "integer"},
+        "number_of_guests": {"type": "integer"},
+        "status_type": {"type": "string"},
+        "total_paid_amount_accurate": {"type": "string"}
+      },
+      "required": ["code", "start_date", "end_date", "nights", "guest_email", "guest_first_name", "guest_last_name", "status_type"]
+    }    
+  },
+  "required": ["reservation"]
+}
