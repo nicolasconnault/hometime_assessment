@@ -27,7 +27,7 @@ Run `rspec spec/`
 API controllers have the responsibility to:
 - check the incoming payload structures for validity
 - return an appropriate HTTP message if the payload's schema or JSON is invalid
-- if the payload valid, pass it to the appropriate payload processing service
+- if the payload is valid, pass it to the appropriate payload processing service
 
 Payload processing services have an abstract class for each endpoint and one child class for each defined payload schema. These are responsible for converting the payload's data into a uniform object that can be saved in the database using ActiveRecord.
 
