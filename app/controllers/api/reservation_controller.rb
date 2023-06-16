@@ -1,13 +1,14 @@
 class Api::ReservationController < ApplicationController
   def process_payload
-    payload = JSON.parse(request.body.read)
-    schema_validator = SchemaValidator.new(payload, 'reservations')
+    params.permit!
+    schema_validator = SchemaValidator.new(params.to_json, 'reservations')
 
     if schema_validator.valid?
-      service_klass = "Reservations::#{schema_validator.schema.camelize}Service".constantize
-      service = service_klass.new(payload)
+      mapper_klass = "Reservations::#{schema_validator.schema.camelize}Mapper".constantize 
+      mapper = mapper_klass.new(params) 
+      service = Reservations::SaveService.new(mapper)
 
-      if service.process_payload
+      if service.execute
         render json: { success: 'Payload processed successfully' }, status: :ok
       else
         render json: { error: 'Failed to process payload' }, status: :unprocessable_entity
@@ -15,7 +16,7 @@ class Api::ReservationController < ApplicationController
     else
       render json: { message: 'Invalid schema' }, status: :unprocessable_entity
     end
-  rescue JSON::ParserError
+  rescue ActionDispatch::Http::Parameters::ParseError, JSON::ParserError
     render json: { message: 'Invalid JSON' }, status: :unprocessable_entity
   end
 end

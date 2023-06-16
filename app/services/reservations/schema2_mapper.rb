@@ -1,16 +1,19 @@
-class Reservations::Schema2Service < Reservations::PayloadProcessingService
-  private
-
-  def guest_params
+class Reservations::Schema2Mapper
+  attr_reader :payload
+ 
+  def initialize(payload) 
+    @payload = payload 
+  end
+  
+  def guest_attributes
     {
       first_name: payload['reservation']['guest_first_name'],
       last_name: payload['reservation']['guest_last_name'],
-      phone_numbers: Array.wrap(payload['reservation']['guest_phone_numbers']), # Ensure this is always an array
       email: payload['reservation']['guest_email']
     }
   end
 
-  def reservation_params
+  def reservation_attributes
     {
       reservation_code: payload['reservation']['code'],
       start_date: payload['reservation']['start_date'],
@@ -24,5 +27,17 @@ class Reservations::Schema2Service < Reservations::PayloadProcessingService
       infants: payload['reservation']['guest_details']['number_of_infants'],
       currency: payload['reservation']['host_currency']
     }
+  end
+
+  def guest_email
+    guest_attributes[:email]
+  end
+
+  def guest_phone_numbers
+    Array.wrap(payload['reservation']['guest_phone_numbers']).uniq
+  end
+
+  def reservation_code
+    reservation_attributes[:reservation_code]
   end
 end
